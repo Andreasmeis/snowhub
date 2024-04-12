@@ -1,0 +1,26 @@
+<div class="wrapper">
+  <!-- <nav class="navbar">
+    <div class="navbar__logo">
+      <img src="../assets/logo.png" alt="">
+    </div>
+    <div class="navbar__buttons">
+      <div class="navbar__button">
+        <span href="#">Αρχική</span>
+      </div>
+      <div class="navbar__button" (mouseover)="flag = true" (mouseleave)="flag = false">
+        <span href="#">Χιονοδρομικά</span>
+        <i class="arrow {{flag ? 'up' : 'down'}}"></i>
+      </div>
+      <div class="navbar__button">
+        <span href="#">Επικοινωνία</span>
+      </div>
+    </div>
+  </nav> -->
+
+  <app-navbar></app-navbar>
+
+  <main>
+    <!-- Your content goes here -->
+    <router-outlet></router-outlet>
+  </main>
+</div>

@@ -1,0 +1,119 @@
+header {
+    --_animationStartsAfter: 5vh;
+    --_animationDistance   : 250px;
+    --_surfaceColorStart   : white;
+    --_surfaceColorEnd     : rgba(0, 0, 0, 0.5);
+    --_textColorStart      : black;
+    --_textColorEnd        : white;
+    --_logoAfterAnimation: none;
+
+    padding        : 1rem 2rem;
+    display        : flex;
+    align-items    : center;
+    justify-content: space-between;
+    width          : var(--_headerWidth, auto);
+
+    color           : var(--_textColorStart);
+    background-color: var(--_surfaceColorStart);
+
+    position: sticky;
+    z-index : 1000;
+    top     : 0rem;
+
+    @supports (animation-timeline: view()) {
+        top: -5rem;
+        margin: auto;
+
+        border-radius  : 100vw;
+        backdrop-filter: blur(0.35rem);
+
+        animation            : stickyNav linear forwards;
+        animation-timeline   : view();
+        animation-range-start: calc(100vh + var(--_animationStartsAfter));
+        animation-range-end  : calc(100vh + var(--_animationStartsAfter) + var(--_animationDistance));
+    }
+
+    .logo {
+        width: 15%;
+        height : 3rem;
+        object-fit: contain;
+        display: var(--_logoDisplay, block);
+        fill   : black;
+    }
+
+    ul {
+        display        : flex;
+        flex-wrap      : wrap;
+        justify-content: center;
+        gap       : 2rem;
+
+        li {
+
+            a {
+                display        : block;
+                position       : relative;
+                padding        : 0.5rem 0;
+                color          : inherit;
+                text-decoration: none;
+                font-weight    : 500;
+                overflow       : hidden;
+
+                &:hover {
+                    cursor: pointer;
+                }
+
+                &::after {
+                    content         : '';
+                    position        : absolute;
+                    bottom          : 0;
+                    left            : 0;
+                    width           : 100%;
+                    height          : 0.1em;
+                    background-color: hotpink;
+                    opacity         : 1;
+                    transition      : opacity 300ms, transform 300ms;
+                    transform       : translate3d(-100%, 0, 0);
+                }
+
+                &:hover::after {
+                    transform: translate3d(0, 0, 0);
+                }
+            }
+
+            // a {
+            //     overflow: hidden;
+
+            //     &::after {
+            //         opacity  : 1;
+            //         transform: translate3d(-100%, 0, 0);
+            //     }
+
+            //     &:hover::after,
+            //     &:focus::after {
+            //         transform: translate3d(0, 0, 0);
+            //     }
+            // }
+        }
+
+
+    }
+
+
+}
+
+@keyframes stickyNav {
+
+    0%,
+    100% {
+        --_headerWidth: fit-content;
+        --_logoDisplay: var(--_logoAfterAnimation);
+    }
+
+    100% {
+        top             : 1rem;
+        color           : var(--_textColorEnd);
+        background-color: var(--_surfaceColorEnd);
+        box-shadow      : inset 0 0 0.5rem hsl(0 0% 100% / 0.1),
+            0 0 0.75rem hsl(0 0% 0% / 0.3);
+    }
+}
