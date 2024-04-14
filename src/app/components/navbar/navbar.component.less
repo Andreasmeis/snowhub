@@ -5,7 +5,7 @@ header {
     --_surfaceColorEnd     : rgba(0, 0, 0, 0.5);
     --_textColorStart      : black;
     --_textColorEnd        : white;
-    --_logoAfterAnimation: none;
+    --_logoAfterAnimation  : none;
 
     padding        : 1rem 2rem;
     display        : flex;
@@ -21,7 +21,7 @@ header {
     top     : 0rem;
 
     @supports (animation-timeline: view()) {
-        top: -5rem;
+        top   : -5rem;
         margin: auto;
 
         border-radius  : 100vw;
@@ -34,71 +34,112 @@ header {
     }
 
     .logo {
-        width: 15%;
-        height : 3rem;
+        width     : 15%;
+        height    : 3rem;
         object-fit: contain;
-        display: var(--_logoDisplay, block);
-        fill   : black;
+        display   : var(--_logoDisplay, block);
+        fill      : black;
+    }
+
+    nav {
+        display: flex;
+    }
+
+    .menu-bars {
+        width          : 15%;
+        height         : 2rem;
+        display        : var(--_logoDisplay, flex);
+        justify-content: end;
+        position       : relative;
+        z-index        : 999;
+
+        label {
+            display       : none;
+            flex-direction: column;
+            width         : 2rem;
+            cursor        : pointer;
+        }
+
+        label span {
+            background   : #000;
+            border-radius: 10px;
+            height       : 4px;
+            margin       : 3px 0;
+            transition   : .4s cubic-bezier(0.68, -0.6, 0.32, 1.6);
+
+            &:nth-of-type(1) {
+                width: 50%;
+
+            }
+
+            &:nth-of-type(2) {
+                width: 100%;
+            }
+
+            &:nth-of-type(3) {
+                width: 75%;
+
+            }
+        }
+
+        input[type="checkbox"] {
+            display: none;
+
+            &:checked~span:nth-of-type(1) {
+                transform-origin: bottom;
+                transform       : rotatez(45deg) translate(4px, 1px);
+            }
+
+            &:checked~span:nth-of-type(2) {
+                transform-origin: top;
+                transform       : rotatez(-45deg)
+            }
+
+            &:checked~span:nth-of-type(3) {
+                transform-origin: bottom;
+                width           : 50%;
+                transform       : translate(13px, -5px) rotatez(45deg);
+            }
+        }
     }
 
     ul {
         display        : flex;
         flex-wrap      : wrap;
         justify-content: center;
-        gap       : 2rem;
+        gap            : 2rem;
 
-        li {
+        li a {
+            display        : block;
+            position       : relative;
+            padding        : 0.5rem 0;
+            color          : inherit;
+            text-decoration: none;
+            font-weight    : 500;
+            overflow       : hidden;
 
-            a {
-                display        : block;
-                position       : relative;
-                padding        : 0.5rem 0;
-                color          : inherit;
-                text-decoration: none;
-                font-weight    : 500;
-                overflow       : hidden;
-
-                &:hover {
-                    cursor: pointer;
-                }
-
-                &::after {
-                    content         : '';
-                    position        : absolute;
-                    bottom          : 0;
-                    left            : 0;
-                    width           : 100%;
-                    height          : 0.1em;
-                    background-color: hotpink;
-                    opacity         : 1;
-                    transition      : opacity 300ms, transform 300ms;
-                    transform       : translate3d(-100%, 0, 0);
-                }
-
-                &:hover::after {
-                    transform: translate3d(0, 0, 0);
-                }
+            &:hover {
+                cursor: pointer;
             }
 
-            // a {
-            //     overflow: hidden;
+            &::after {
+                content         : '';
+                position        : absolute;
+                bottom          : 0;
+                left            : 0;
+                width           : 100%;
+                height          : 0.1em;
+                background-color: #afcbe3;
+                opacity         : 1;
+                transition      : opacity 300ms, transform 300ms;
+                transform       : translate3d(-100%, 0, 0);
+            }
 
-            //     &::after {
-            //         opacity  : 1;
-            //         transform: translate3d(-100%, 0, 0);
-            //     }
-
-            //     &:hover::after,
-            //     &:focus::after {
-            //         transform: translate3d(0, 0, 0);
-            //     }
-            // }
+            &:hover::after {
+                transform: translate3d(0, 0, 0);
+            }
         }
-
-
     }
-
-
 }
 
 @keyframes stickyNav {
@@ -115,5 +156,53 @@ header {
         background-color: var(--_surfaceColorEnd);
         box-shadow      : inset 0 0 0.5rem hsl(0 0% 100% / 0.1),
             0 0 0.75rem hsl(0 0% 0% / 0.3);
+    }
+}
+
+
+@media (max-width: 768px) {
+    header {
+        padding      : 1rem 1rem;
+        animation    : none;
+        top          : 0;
+        border-radius: 0;
+
+        .logo {
+            width: 35%;
+        }
+
+        nav {
+            height          : 100vh;
+            width           : 0;
+            position        : fixed;
+            top             : 0;
+            left            : 100vw;
+            z-index         : 100;
+            background-color: #fff;
+            transition      : all 0.5s;
+            overflow        : hidden;
+
+            &.open {
+                width          : 100vw;
+                display        : flex;
+                justify-content: end;
+                left           : 0;
+            }
+
+            ul {
+                flex-direction : column;
+                justify-content: flex-start;
+                align-items    : end;
+                padding        : 5rem 1rem;
+            }
+        }
+
+        .menu-bars {
+            width: 35%;
+
+            label {
+                display: flex;
+            }
+        }
     }
 }

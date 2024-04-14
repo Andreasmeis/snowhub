@@ -9,6 +9,5 @@
             <h2 class="card-title">{{data.name}}</h2>
             <div class="badge {{data.status == 'Open' ? 'active' : 'inactive'}}"></div>
         </div>
-        <i class="fa-{{isLiked || isHovered ? 'solid' : 'regular'}} fa-heart" (click)="isLiked = !isLiked"
-            (mouseover)="isHovered = true" (mouseleave)="isHovered = false"></i>
+        <i class="fa-solid {{isLiked ? 'liked' : ''}} fa-heart" (click)="isLiked = !isLiked"></i>
     </div>

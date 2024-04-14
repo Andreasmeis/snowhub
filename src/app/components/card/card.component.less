@@ -27,35 +27,60 @@
     }
 
     .card-content {
-        display: flex;
+        display        : flex;
         justify-content: space-between;
-        padding: 1rem;
+        padding        : 1rem;
 
         .card-info {
-            display: flex;
+            display    : flex;
             align-items: center;
-            gap: 1rem;
+            gap        : 1rem;
 
             .badge {
-                width           : .4rem;
-                height          : .4rem;
-                border-radius   : 100%;
+                width        : .4rem;
+                height       : .4rem;
+                border-radius: 100%;
 
                 &.active {
                     background-color: #00a67eaa;
-                    box-shadow: 0 0 4px 1px #00a67e;
+                    box-shadow      : 0 0 4px 1px #00a67e;
                 }
 
                 &.inactive {
                     background-color: #ec0d0daa;
-                    box-shadow: 0 0 4px 1px #ec0d0d;
+                    box-shadow      : 0 0 4px 1px #ec0d0d;
                 }
             }
         }
 
         i {
-            font-size: 1.5rem;
-            color    : #00a67e;
+            font-size    : 1.5rem;
+            color        : #afcbe3;
+            overflow     : hidden;
+
+            &:hover {
+                cursor: pointer;
+            }
+
+            &.liked {
+                animation: like .5s ease-in-out;
+                color    : #1d5b8a;
+            }
         }
+
+    }
+}
+
+@keyframes like {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+
+    100% {
+        transform: scale(1);
     }
 }
