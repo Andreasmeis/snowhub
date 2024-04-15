@@ -11,10 +11,14 @@ build_artifacts:
   only:
     - stage
   stage: build_stage
+    tasks:
+    - npm install @angular/cli@15.0.0 -g
+    - npm ci --force --legacy-peer-deps
+    - ng build --base-href https://meis.gr/snowhub/
   script:
     - npm install @angular/cli@15.0.0 -g
     - npm ci --force --legacy-peer-deps
-    - ng build --configuration=stage --base-href https://meis.gr/snowhub/
+    - ng build --base-href https://meis.gr/snowhub/
   artifacts:
     paths:
       - dist
@@ -25,13 +29,7 @@ build_artifacts:
 #
 # Deploy
 #
-deploy_stage:
-  only:
-    - stage
-  stage: deploy_stage
-  script:
-    - export DEPLOYPATH=/home/example/public_html/snowhub
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/example/public_html/snowhub/
     - /dist -R images $DEPLOYPATH
-  needs: ["build_artifacts"]
-  tags:
-    - short-duration
