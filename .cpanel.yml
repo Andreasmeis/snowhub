@@ -29,10 +29,6 @@ deploy_stage:
   only:
     - stage
   stage: deploy_stage
-  variables:
-    SSH_SERVER_KEY: ${CE_SSH_KEY}
-    SSH_SERVER_PORT: ${CE_PORT}
-    SSH_SERVER_HOST: ${CE_HOST}
   script:
     - export DEPLOYPATH=/home/example/public_html/snowhub
     - /dist -R images $DEPLOYPATH
