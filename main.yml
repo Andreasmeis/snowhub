@@ -1,12 +1,22 @@
-#
-# Deploy
-#
-deployment:
-  tasks:
-    - npm install @angular/cli@15.0.0 -g
-    - npm install --force --legacy-peer-deps
-    - ng build --prod --base-href https://meis.gr/snowhub/
-    - export DEPLOYPATH=/home/andreasmeis/public_html/snowhub
-    - /bin/cp -R dist/* $DEPLOYPATH
-    - /bin/find $DEPLOYPATH -type d -exec /bin/chmod 755 {} \;
-    - /bin/find $DEPLOYPATH -type f -exec /bin/chmod 644 {} \;
+name: Test
+
+on:
+  push:
+    branches:
+    - stage
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v4.0.2
+          
+      - name: Install dependencies
+        run: npm install --force
+  
+      # - name: Run tests
+      #   run: npm run test:headless
+  
+      # - name: Build
+      #   run: npm run build:prod
