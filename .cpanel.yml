@@ -1,0 +1,41 @@
+image: node:21-alpine
+
+stages:
+  - build_stage
+  - deploy_stage
+
+#
+# Build artifacts
+#
+build_artifacts:
+  only:
+    - stage
+  stage: build_stage
+  script:
+    - npm install @angular/cli@15.0.0 -g
+    - npm ci --force --legacy-peer-deps
+    - ng build --configuration=stage --base-href https://meis.gr/snowhub/
+  artifacts:
+    paths:
+      - dist
+    expire_in: 1 week
+  tags:
+    - long-duration-low-priority
+
+#
+# Deploy
+#
+deploy_stage:
+  only:
+    - stage
+  stage: deploy_stage
+  variables:
+    SSH_SERVER_KEY: ${CE_SSH_KEY}
+    SSH_SERVER_PORT: ${CE_PORT}
+    SSH_SERVER_HOST: ${CE_HOST}
+  script:
+    - export DEPLOYPATH=/home/example/public_html/snowhub
+    - /dist -R images $DEPLOYPATH
+  needs: ["build_artifacts"]
+  tags:
+    - short-duration
