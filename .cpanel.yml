@@ -3,8 +3,9 @@
 #
 deployment:
   tasks:
-    - npm install @angular/cli@15.0.0 -g
-    - npm ci --force --legacy-peer-deps
-    - ng build --base-href https://meis.gr/snowhub/
-    - export DEPLOYPATH=/home/example/public_html/snowhub/
-    - /dist -R images $DEPLOYPATH
+    - npm install --no-audit
+    - npm run build --prod
+    - export DEPLOYPATH=/home/andreasmeis/public_html/snowhub
+    - /bin/cp -R dist/* $DEPLOYPATH
+    - /bin/find $DEPLOYPATH -type d -exec /bin/chmod 755 {} \;
+    - /bin/find $DEPLOYPATH -type f -exec /bin/chmod 644 {} \;
