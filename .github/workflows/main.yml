@@ -10,18 +10,18 @@ jobs:
     name: Build and Test
     runs-on: ubuntu-latest
     steps:
-      # - name: Checkout
-      #   uses: actions/checkout@v2
-      # - name: Use Node 16.x
-      #   uses: actions/setup-node@v1
-      #   with:
-      #     node-version: '16.x'
-      # - name: Install dependencies
-      #   run: npm ci
-      # - name: Build
-      #   run: npm run build --prod
-      # - name: Show Files
-      #   run: ls -la
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Use Node 16.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: '16.x'
+      - name: Install dependencies
+        run: npm ci
+      - name: Build
+        run: npm run build --prod
+      - name: Show Files
+        run: ls -la
       - name: 📂 Sync files via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
@@ -29,6 +29,6 @@ jobs:
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           commands: ls -la
-          # server-dir: '/public_html/'
-          # local-dir: './dist/'
+          server-dir: '/public_html/'
+          local-dir: './dist/'
             
