@@ -1,24 +1,9 @@
-name: Test
-
-on:
-  push:
-    branches:
-    - main
-
-jobs:
-  build:
-    name: Build and Test
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-      - name: Use Node 16.x
-        uses: actions/setup-node@v1
-        with:
-          node-version: '16.x'
-      # - name: Install dependencies
-      #   run: npm ci
-      # - name: Build
-      #   run: npm run build --prod
-      # - name: Show Files
-      #   run: ls -la
+---
+deployment:
+      tasks:
+        - export DEPLOYPATH=/home/andreasmeis/public_html/gittest  # Add /<app_folder> if required
+        # - /bin/cp <file_name> $DEPLOYPATH                 #Copy specific file to destination from root
+        # - /bin/cp /<sub_folder>/<file_name> $DEPLOYPATH   #copy specific file from source sub folder
+        # - /bin cp * $DEPLOYPATH                           #copy all from root 
+        - /bin cp /dist/* $DEPLOYPATH             #copy all from sub folder root
+        # - /bin/cp -r * $DEPLOYPATH                        #copy all recursively to $DEPLOYPATH
