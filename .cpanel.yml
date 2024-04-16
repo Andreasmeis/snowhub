@@ -8,8 +8,8 @@
 #         - /bin cp /dist/* $DEPLOYPATH             #copy all from sub folder root
 #         # - /bin/cp -r * $DEPLOYPATH                        #copy all recursively to $DEPLOYPATH
 
----
-deployment:
-  tasks:
-    - export DEPLOYPATH=/home/example/public_html/
-    - /bin/cp -R images $DEPLOYPATH
+# ---
+# deployment:
+#   tasks:
+#     - export DEPLOYPATH=/home/example/public_html/
+#     - /bin/cp -R images $DEPLOYPATH
