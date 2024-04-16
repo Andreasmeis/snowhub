@@ -23,7 +23,7 @@ jobs:
       - name: Show Files
         run: ls -la
       - name: Deploy to FTP
-        uses: SamKirkland/FTP-Deploy-Action@4.1.1
+        uses: SamKirkland/FTP-Deploy-Action@v3
         with:
           server: ftp.meis.gr
           username: ${{ secrets.USERNAME }}
