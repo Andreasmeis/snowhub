@@ -28,6 +28,6 @@ jobs:
           server: ftp.meis.gr
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
-          server-dir: '/public_html/test/'
+          server-dir: '/public_html/'
           local-dir: './dist/'
             
