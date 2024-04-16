@@ -28,7 +28,7 @@ jobs:
           server: ftp.meis.gr 
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
-          dry-run: ls -la
-          server-dir: '/public_html/'
-          local-dir: './dist/'
+          commands: ls -la
+          # server-dir: '/public_html/'
+          # local-dir: './dist/'
             
