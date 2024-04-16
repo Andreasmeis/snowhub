@@ -22,12 +22,12 @@ jobs:
         run: npm run build --prod
       - name: Show Files
         run: ls -la
-      - name: Deploy to FTP
-        uses: SamKirkland/FTP-Deploy-Action@v3
+      - name: 📂 Sync files via FTP
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ftp.meis.gr
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
           server-dir: '/public_html/test'
           local-dir: './dist/'
-          
+            
