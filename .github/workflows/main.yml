@@ -22,20 +22,12 @@ jobs:
         run: npm run build --prod
       - name: Show Files
         run: ls -la
-      - name: FTP Transfer
-        # You may pin to the exact commit or the version.
-        # uses: joutvhu/ftp-transfer@50bd98a47d757eb61bdaa3ba18c17484fbc98c27
-        uses: joutvhu/ftp-transfer@v1.0.0
+      - name: Deploy to FTP
+        uses: SamKirkland/FTP-Deploy-Action@4.1.1
         with:
-          # The hostname or IP address of the FTP server.
-          host: ftp.meis.gr
-          # The port of the FTP server.
-          port: 21
-          # Username for authentication.
+          server: ftp.meis.gr
           username: ${{ secrets.USERNAME }}
-          # Password for authentication.
           password: ${{ secrets.PASSWORD }}
-          
-          # The ftp commands
-          commands: ls- la
+          server-dir: '/public_html/test'
+          local-dir: './dist/'
           
