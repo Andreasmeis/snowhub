@@ -20,15 +20,12 @@ jobs:
         run: npm ci
       - name: Build
         run: npm run build --prod
-      - name: Show Files
-        run: ls -la
       - name: 📂 Sync files via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ftp.meis.gr 
           username: ${{ secrets.USERNAME }}
           password: ${{ secrets.PASSWORD }}
-          commands: ls -la
-          server-dir: '/public_html/'
-          local-dir: './dist/'
+          server-dir: '/public_html/test'
+          local-dir: './dist/snowhub'
             
