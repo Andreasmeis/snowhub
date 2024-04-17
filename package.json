@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "build:ci": "ng build --prod --base-href https://meis.gr/snowhub/"
   },
   "private": true,
   "dependencies": {
