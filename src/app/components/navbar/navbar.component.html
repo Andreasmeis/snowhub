@@ -1,5 +1,6 @@
 <header>
     <img class="logo" src="./assets/logo.png" routerLink="/home">
+    <div class="opacity" [ngClass]="{'open': nav.value.value}" (click)="closeNav()"></div>
     <nav class="nav" [ngClass]="{'open': nav.value.value}">
         <ul (click)="closeNav()">
             <li><a routerLink="/home">Αρχική</a></li>

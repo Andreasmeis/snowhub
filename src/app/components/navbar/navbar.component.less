@@ -171,6 +171,14 @@ header {
             width: 35%;
         }
 
+        .opacity.open {
+            height  : 100vh;
+            width   : 30vw;
+            position: fixed;
+            top     : 0;
+            left    : 0;
+        }
+
         nav {
             height          : 100vh;
             width           : 0;
@@ -183,10 +191,12 @@ header {
             overflow        : hidden;
 
             &.open {
-                width          : 100vw;
+                width          : 60vw;
                 display        : flex;
                 justify-content: end;
-                left           : 0;
+                left           : 40vw;
+                box-shadow     : 0 0 2rem 3rem #fff;
+
             }
 
             ul {
