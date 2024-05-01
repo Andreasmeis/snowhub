@@ -4,17 +4,21 @@ import { AppRoutingModule } from '../app-routing.module';
 import { ComponentsModule } from '../components/components.module';
 import { HomeComponent } from './home/home.component';
 import { ResortsComponent } from './resorts/resorts.component';
+import { ResortComponent } from './resort/resort.component';
+import { SwiperModule } from 'swiper/angular';
 
 const routesComponents = [
     HomeComponent,
-    ResortsComponent
+    ResortsComponent,
+    ResortComponent
 ];
 
 @NgModule({
   imports: [
     AppRoutingModule,
     BrowserModule,
-    ComponentsModule
+    ComponentsModule,
+    SwiperModule
   ],
   declarations: [
     ...routesComponents

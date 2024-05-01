@@ -1,13 +1,14 @@
 <div class="card">
-    <div class="image-wrapper">
+    <div class="image-wrapper" routerLink="/resorts/{{data.id}}">
         <img src="https://assets.vogue.com/photos/63b883bdf8989f4ae6ba680e/master/w_2560%2Cc_limit/GettyImages-502757710.jpg"
             alt="Card Image">
         <span class="location">{{data.location}}</span>
     </div>
     <div class="card-content">
-        <div class="card-info">
+        <div class="card-info"  routerLink="/resorts/{{data.id}}">
             <h2 class="card-title">{{data.name}}</h2>
             <div class="badge {{data.status == 'Open' ? 'active' : 'inactive'}}"></div>
         </div>
         <i class="fa-solid {{isLiked ? 'liked' : ''}} fa-heart" (click)="isLiked = !isLiked"></i>
     </div>
+</div>
