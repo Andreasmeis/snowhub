@@ -1,26 +1,27 @@
 <header>
-    <img class="logo" src="./assets/logo.png" routerLink="/home">
     <div class="opacity" [ngClass]="{'open': nav.value.value}" (click)="closeNav()"></div>
     <nav class="nav" [ngClass]="{'open': nav.value.value}">
+        <div class="logo">
+            <img src="./assets/logo.png" routerLink="/home">
+        </div>
         <ul (click)="closeNav()">
             <li><a routerLink="/home">Αρχική</a></li>
             <li><a routerLink="/resorts">Χιονοδρομικά</a></li>
             <li><a routerLink="/">Επικοινωνία</a></li>
         </ul>
+        <div class="login">
+            <a *ngIf="!user">Σύνδεση</a>
+            <a *ngIf="user">{{user.name}}</a>
+        </div>
     </nav>
     <div class="menu-bars" [formGroup]="nav">
         <label for="check">
-            <input type="checkbox" id="check" formControlName="value" [checked]="nav.value.value"/>
+            <input type="checkbox" id="check" formControlName="value" [checked]="nav.value.value" />
+
+            <!-- Menu Bars -->
             <span></span>
             <span></span>
             <span></span>
-            <!-- <nav class="nav">
-                <ul>
-                    <li><a routerLink="/home">Αρχική</a></li>
-                    <li><a routerLink="/resorts">Χιονοδρομικά</a></li>
-                    <li><a routerLink="/">Επικοινωνία</a></li>
-                </ul>
-            </nav> -->
         </label>
     </div>
 </header>

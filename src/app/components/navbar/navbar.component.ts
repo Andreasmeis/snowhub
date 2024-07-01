@@ -8,6 +8,11 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./navbar.component.less']
 })
 export class NavbarComponent {
+  // user: any;
+  user = {
+    name: 'John Doe',
+    email: 'johndoe@gmail.com'
+  }
   isOpen: boolean = false;
   nav = new FormGroup(
     {

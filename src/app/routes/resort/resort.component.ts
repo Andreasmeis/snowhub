@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { RequestService } from 'src/app/services/request.service';
 import { resorts } from 'src/assets/resorts';
 
 import SwiperCore, { SwiperOptions } from 'swiper';
@@ -18,7 +19,10 @@ export class ResortComponent {
   };
   data: any = [];
 
+  constructor(private request: RequestService) { }
+
   ngOnInit() {
+    this.request.getRequest({ url: 'SnowResorts'}).then(res => console.log(res))
     for (let i = 0; i < 4; i++) {
       console.log(resorts[i])
       this.data.push(resorts[i]);

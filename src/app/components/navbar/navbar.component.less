@@ -7,11 +7,8 @@ header {
     --_textColorEnd        : white;
     --_logoAfterAnimation  : none;
 
-    padding        : 1rem 2rem;
-    display        : flex;
-    align-items    : center;
-    justify-content: space-between;
-    width          : var(--_headerWidth, auto);
+    padding: 1rem 2rem;
+    width  : var(--_headerWidth, auto);
 
     color           : var(--_textColorStart);
     background-color: var(--_surfaceColorStart);
@@ -33,22 +30,54 @@ header {
         animation-range-end  : calc(100vh + var(--_animationStartsAfter) + var(--_animationDistance));
     }
 
-    .logo {
-        width     : 15%;
-        height    : 3rem;
-        object-fit: contain;
-        display   : var(--_logoDisplay, block);
-        fill      : black;
+    .opacity {
+        display: none;
     }
 
+
     nav {
-        display: flex;
+        width          : 100%;
+        display        : flex;
+        justify-content: space-between;
+        align-items    : center;
+
+        .logo {
+            flex   : 1 1;
+            height : 3rem;
+            display: var(--_logoDisplay, block);
+            fill   : black;
+            cursor: pointer;
+
+            img {
+                max-width : 100%;
+                height    : 100%;
+                object-fit: contain;
+            }
+        }
+
+        ul {
+            flex-grow: 1;
+        }
+
+        .login {
+            flex           : 1 1;
+            display        : var(--_logoDisplay, flex);
+            justify-content: flex-end;
+            gap            : 1rem;
+
+            a {
+                color          : inherit;
+                text-decoration: none;
+                font-weight    : 500;
+            }
+        }
     }
+
 
     .menu-bars {
         width          : 15%;
         height         : 2rem;
-        display        : var(--_logoDisplay, flex);
+        display        : none;
         justify-content: end;
         position       : relative;
         z-index        : 999;
@@ -132,7 +161,7 @@ header {
                 background-color: #afcbe3;
                 opacity         : 1;
                 transition      : opacity 300ms, transform 300ms;
-                transform       : translate3d(-100%, 0, 0);
+                transform       : translate3d(-101%, 0, 0);
             }
 
             &:hover::after {
@@ -167,16 +196,22 @@ header {
         top          : 0;
         border-radius: 0;
 
-        .logo {
-            width: 35%;
-        }
+        // .logo {
+        //     width: 35%;
+        // }
 
-        .opacity.open {
-            height  : 100vh;
-            width   : 30vw;
-            position: fixed;
-            top     : 0;
-            left    : 0;
+        .opacity {
+            display: none;
+
+            &.open {
+                display : block;
+                height  : 100vh;
+                width   : 50%;
+                position: fixed;
+                z-index : 10;
+                top     : 0;
+                left    : 0;
+            }
         }
 
         nav {
@@ -184,17 +219,27 @@ header {
             width           : 0;
             position        : fixed;
             top             : 0;
-            left            : 100vw;
-            z-index         : 100;
+            left            : 100%;
+            z-index         : 1;
             background-color: #fff;
             transition      : all 0.5s;
             overflow        : hidden;
+            flex-direction  : column;
+            align-items     : flex-end;
+
+            .logo {
+                width   : 35%;
+                position: fixed;
+                z-index : 0;
+                top     : 0.5rem;
+                left    : 0.5rem;
+            }
 
             &.open {
-                width          : 60vw;
+                width          : 50%;
                 display        : flex;
                 justify-content: end;
-                left           : 40vw;
+                left           : 50%;
                 box-shadow     : 0 0 2rem 3rem #fff;
 
             }
@@ -205,10 +250,16 @@ header {
                 align-items    : end;
                 padding        : 5rem 1rem;
             }
+
+            .login {
+                padding    : 10% 1rem;
+                align-items: flex-end;
+            }
         }
 
         .menu-bars {
-            width: 35%;
+            display    : flex;
+            margin-left: auto;
 
             label {
                 display: flex;
