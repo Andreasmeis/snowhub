@@ -22,6 +22,14 @@ export class ResortComponent {
   constructor(private request: RequestService) { }
 
   ngOnInit() {
+    let loginParams = {
+      url: 'login',
+      req: {
+        email: 'meis0@test.com',
+        password: 'paokara23'
+      }
+    }
+    this.request.postRequest(loginParams).then(res => console.log(res))
     this.request.getRequest({ url: 'SnowResorts'}).then(res => console.log(res))
     for (let i = 0; i < 4; i++) {
       console.log(resorts[i])

@@ -10,7 +10,7 @@
             <li><a routerLink="/">Επικοινωνία</a></li>
         </ul>
         <div class="login">
-            <a *ngIf="!user">Σύνδεση</a>
+            <a *ngIf="!user" (click)="openLoginDialog()">Σύνδεση</a>
             <a *ngIf="user">{{user.name}}</a>
         </div>
     </nav>

@@ -1,5 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { LoginDialog } from 'src/app/dialogs/login-dialog/login-dialog';
+import { RequestService } from 'src/app/services/request.service';
 
 
 @Component({
@@ -8,11 +11,7 @@ import { FormControl, FormGroup } from '@angular/forms';
   styleUrls: ['./navbar.component.less']
 })
 export class NavbarComponent {
-  // user: any;
-  user = {
-    name: 'John Doe',
-    email: 'johndoe@gmail.com'
-  }
+  user: any;
   isOpen: boolean = false;
   nav = new FormGroup(
     {
@@ -20,8 +19,39 @@ export class NavbarComponent {
     }
   );
 
+  constructor(public dialog: MatDialog, private requestService: RequestService) { }
 
-  closeNav () {
+  ngOnInit() {
+    if (this.requestService.token) {
+      this.requestService.getRequest({ url: 'user' }, true).then((data: any) => {
+        this.user = {
+          name: data.name,
+          email: data.email
+        };
+      })
+    }
+  }
+
+  openLoginDialog() {
+    const dialogRef = this.dialog.open(LoginDialog, {
+      width: '20vw',
+      height: '70vh',
+      id: 'login-dialog',
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      if (result) {
+        this.requestService.getRequest({ url: 'user' }, true).then((data: any) => {
+          this.user = {
+            name: data.name,
+            email: data.email
+          };
+        })
+      }
+    });
+  }
+
+  closeNav() {
     this.nav.value.value = false;
   }
 }

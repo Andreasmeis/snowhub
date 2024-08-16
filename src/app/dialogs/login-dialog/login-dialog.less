@@ -1,0 +1,72 @@
+.dialog-container {
+    color  : #fff;
+    padding: 1rem 2rem;
+
+    h1 {
+        display: inline;
+        color    : #ffffff77;
+        font-size: 2rem;
+        margin   : 2rem 0;
+        margin-right: .5rem;
+        cursor: pointer;
+
+        &.active {
+            color: #fff;
+        }
+    }
+
+    .login-form {
+        margin-top: 2rem;
+        transition: all 1s;
+
+        .form-group {
+            display       : flex;
+            flex-direction: column;
+            transition: all 1s;
+
+            &.hidden {
+                display: none;
+            }
+
+            label {
+                padding: 1rem;
+            }
+
+            input {
+                border          : none;
+                outline         : none;
+                background-color: #fff5;
+                color           : #fff;
+                padding         : 1rem;
+                border-radius   : 4rem;
+
+                &:focus {
+                    border-color: #fff;
+                }
+            }
+        }
+
+    }
+    .form-button {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        button {
+            margin-top   : 2rem;
+            padding      : 1rem 3rem;
+            color        : #000;
+            background   : #fff;
+            border       : none;
+            border-radius: 10rem;
+            font-size: 1rem;
+        }
+    }
+}
+
+::ng-deep #login-dialog .mat-mdc-dialog-surface {
+    background     : #0009;
+    backdrop-filter: blur(10px);
+    border         : 1px solid rgba(255, 255, 255, 0.6);
+    border-radius  : 10px;
+}

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
+import { RequestService } from './services/request.service';
 
 @Component({
   selector: 'app-root',
@@ -7,5 +9,11 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'snowhub';
-  flag = false
+  flag = false;
+  
+  constructor(public dialog: MatDialog, private request: RequestService) {}
+
+  ngOnInit() {
+    this.request.token = localStorage.getItem('token');
+  }
 }

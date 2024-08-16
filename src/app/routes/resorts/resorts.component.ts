@@ -8,7 +8,7 @@ import { resorts } from 'src/assets/resorts';
   styleUrls: ['./resorts.component.less']
 })
 export class ResortsComponent {
-  data = resorts
+  data: any;
 
   constructor(private request: RequestService) { }
 

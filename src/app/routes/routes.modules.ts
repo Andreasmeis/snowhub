@@ -6,6 +6,7 @@ import { HomeComponent } from './home/home.component';
 import { ResortsComponent } from './resorts/resorts.component';
 import { ResortComponent } from './resort/resort.component';
 import { SwiperModule } from 'swiper/angular';
+import { SharedModule } from '../shared.module';
 
 const routesComponents = [
     HomeComponent,
@@ -18,7 +19,8 @@ const routesComponents = [
     AppRoutingModule,
     BrowserModule,
     ComponentsModule,
-    SwiperModule
+    SwiperModule,
+    SharedModule
   ],
   declarations: [
     ...routesComponents

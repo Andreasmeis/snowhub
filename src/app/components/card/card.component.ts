@@ -9,5 +9,4 @@ export class CardComponent {
   @Input() data: any;
   isLiked = false;
   isHovered = false;
-
 }

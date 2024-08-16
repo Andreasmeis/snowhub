@@ -3,8 +3,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NavbarComponent } from './navbar/navbar.component';
 import { AppRoutingModule } from '../app-routing.module';
 import { CardComponent } from './card/card.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { SharedModule } from '../shared.module';
 
 const components = [
     NavbarComponent,
@@ -15,8 +14,7 @@ const components = [
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
-    ReactiveFormsModule
+    SharedModule,
   ],
   declarations: [
     ...components,

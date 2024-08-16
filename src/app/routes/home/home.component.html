@@ -1,5 +1,5 @@
 <div class="wrapper">
-    <swiper [config]="configImages" (swiper)="onSwiper($event)" (slideChange)="onSlideChange()">
+    <swiper [config]="configImages">
         <ng-template swiperSlide data-swiper-autoplay="2000">
             <img class="imageSlider" src="https://35pigadia.com/wp-content/uploads/2023/03/Pigadia-2023-6.jpg" alt="">
         </ng-template>
@@ -14,7 +14,7 @@
     <div class="container">
         <div class="resorts">
             <h2>Latest Resorts</h2>
-            <swiper [config]="config" (swiper)="onSwiper($event)" (slideChange)="onSlideChange()">
+            <swiper [config]="config">
                 <ng-template swiperSlide *ngFor="let resort of data">
                     <app-card swiperSlide [data]="resort"></app-card>
                 </ng-template>
