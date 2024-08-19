@@ -1,6 +1,6 @@
 .dialog-container {
     color  : #fff;
-    padding: 1rem 2rem;
+    padding: 2rem;
 
     h1 {
         display: inline;
@@ -16,13 +16,11 @@
     }
 
     .login-form {
-        margin-top: 2rem;
-        transition: all 1s;
+        margin-top: 1rem;
 
         .form-group {
             display       : flex;
             flex-direction: column;
-            transition: all 1s;
 
             &.hidden {
                 display: none;
@@ -69,4 +67,10 @@
     backdrop-filter: blur(10px);
     border         : 1px solid rgba(255, 255, 255, 0.6);
     border-radius  : 10px;
+}
+
+@media screen and (max-width: 600px) {
+    ::ng-deep #login-dialog .mat-mdc-dialog-surface {
+        width: 100%;
+    }
 }

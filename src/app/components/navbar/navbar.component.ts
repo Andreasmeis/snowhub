@@ -34,8 +34,6 @@ export class NavbarComponent {
 
   openLoginDialog() {
     const dialogRef = this.dialog.open(LoginDialog, {
-      width: '20vw',
-      height: '70vh',
       id: 'login-dialog',
     });
 
@@ -49,6 +47,12 @@ export class NavbarComponent {
         })
       }
     });
+  }
+
+  logout() {
+    this.requestService.postRequest({ url: 'logout' }, true).then(() => {
+      this.user = null;
+    })
   }
 
   closeNav() {

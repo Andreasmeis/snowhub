@@ -11,7 +11,12 @@
         </ul>
         <div class="login">
             <a *ngIf="!user" (click)="openLoginDialog()">Σύνδεση</a>
-            <a *ngIf="user">{{user.name}}</a>
+            <div class="dropdown">
+                <a *ngIf="user">{{user.name}}</a>
+                <div class="dropdown-content">
+                    <a *ngIf="user" (click)="logout()">Αποσύνδεση</a>
+                </div>
+            </div>
         </div>
     </nav>
     <div class="menu-bars" [formGroup]="nav">

@@ -23,6 +23,7 @@
     </form>
     
     <div class="form-button">
-        <button (click)="login()">Login</button>
+        <button *ngIf="!isRegister" (click)="login()">Login</button>
+        <button *ngIf="isRegister" (click)="register()">Register</button>
     </div>
 </div>

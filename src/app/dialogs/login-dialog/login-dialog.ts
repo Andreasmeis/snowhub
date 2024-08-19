@@ -15,6 +15,7 @@ export class LoginDialog {
     constructor(public dialogRef: MatDialogRef<LoginDialog>, private fb: FormBuilder, private requestService: RequestService,
         @Inject(MAT_DIALOG_DATA) public data: any) {
         this.loginForm = this.fb.group({
+            name: new FormControl('', [this.isRegister ? Validators.required : Validators.nullValidator]),
             email: new FormControl('', [Validators.required, Validators.email]),
             password: new FormControl('', [Validators.required, Validators.minLength(8)])
         });
@@ -34,6 +35,23 @@ export class LoginDialog {
                 this.requestService.token = res.token;
                 localStorage.setItem('token', res.token);
                 this.dialogRef.close(true);
+            })
+        }
+    }
+
+    register() {
+        let params = {
+            url: 'register',
+            req: {
+                name: this.loginForm.value.name,
+                email: this.loginForm.value.email,
+                password: this.loginForm.value.password
+            }
+
+        };
+        if (this.loginForm.valid) {
+            this.requestService.postRequest(params).then(() => {
+                this.isRegister = false;
             })
         }
     }

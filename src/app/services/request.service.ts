@@ -12,8 +12,8 @@ export class RequestService {
   constructor(private http: HttpClient) { }
 
   getRequest(params: any, auth?: boolean) {
-    
     const headers = auth ? new HttpHeaders({ 'Authorization': 'Bearer ' + this.token }) : new HttpHeaders();
+
     return new Promise((resolve, reject) => {
       this.http.get<any>(environment.apiUrl + params.url, { headers }).
         subscribe((data: any) => {
@@ -25,9 +25,11 @@ export class RequestService {
   };
 
   // Send POST Request
-  postRequest(params: any) {
+  postRequest(params: any, auth?: boolean) {
+    const headers = auth ? new HttpHeaders({ 'Authorization': 'Bearer ' + this.token }) : new HttpHeaders();
+
     return new Promise((resolve, reject) => {
-      this.http.post<any>(environment.apiUrl + params.url, params.req)
+      this.http.post<any>(environment.apiUrl + params.url, params.req, { headers })
         .subscribe(data => {
           resolve(data);
         }, error => {
