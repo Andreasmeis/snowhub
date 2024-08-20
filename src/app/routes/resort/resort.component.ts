@@ -1,46 +1,80 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { RequestService } from 'src/app/services/request.service';
-import { resorts } from 'src/assets/resorts';
-
-import SwiperCore, { SwiperOptions } from 'swiper';
-
+import PhotoSwipeLightbox from 'photoswipe/lightbox';
+import PhotoSwipe from 'photoswipe';
+import { SwiperOptions } from 'swiper';
+import { ActivatedRoute } from '@angular/router';
+import { Activities, ActivitiesIcons } from 'src/app/interfaces/resorts';
 @Component({
   selector: 'app-resort',
   templateUrl: './resort.component.html',
-  styleUrls: ['./resort.component.less']
+  styleUrls: ['./resort.component.less'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class ResortComponent {
-  config: SwiperOptions = {
-    slidesPerView: 3,
-    spaceBetween: 50,
-    navigation: true,
-    pagination: { clickable: true },
-    scrollbar: { draggable: true },
-  };
-  data: any = [];
+  resortId = this.route.snapshot.params['resortId'];
+  images: any[] = [];
+  resort: any = {};
+  Activities: any = Activities;
+  ActivitiesIcons: any = ActivitiesIcons;
 
-  constructor(private request: RequestService) { }
+  configImages: SwiperOptions = {
+    slidesPerView: 4.5,
+    spaceBetween: 30,
+    navigation: true,
+  };
+
+  constructor(private request: RequestService, private route: ActivatedRoute) { }
 
   ngOnInit() {
-    let loginParams = {
-      url: 'login',
-      req: {
-        email: 'meis0@test.com',
-        password: 'paokara23'
-      }
+    let params = {
+      url: 'SnowResorts'
     }
-    this.request.postRequest(loginParams).then(res => console.log(res))
-    this.request.getRequest({ url: 'SnowResorts'}).then(res => console.log(res))
-    for (let i = 0; i < 4; i++) {
-      console.log(resorts[i])
-      this.data.push(resorts[i]);
-    }
-    console.log(this.data)
+    this.request.getRequest(params).then((res: any) => {
+      this.resort = res.find((item: any) => item.id == this.resortId)
+    });
   }
-  onSwiper([swiper]: any) {
-    console.log(swiper);
+
+  ngAfterViewInit() {
+    // Get the images data before initializing PhotoSwipe
+    const items = this.getImagesData();
+
+    // Initialize PhotoSwipeLightbox with the items
+    const lightbox = new PhotoSwipeLightbox({
+      gallery: '#gallery--responsive-images',
+      children: 'a',
+      pswpModule: PhotoSwipe,
+      dataSource: items // Pass the image data directly here
+    });
+
+    lightbox.init();
   }
-  onSlideChange() {
-    console.log('slide change');
+
+  getImagesData() {
+    const items: any[] = [];
+    const galleryElements = document.querySelectorAll('#gallery--responsive-images a');
+
+    galleryElements.forEach((element: any) => {
+      const img = element.querySelector('img');
+
+      // Use the image's natural dimensions if available
+      const image = new Image();
+      image.src = element.getAttribute('href');
+
+      image.onload = () => {
+        const item = {
+          src: image.src,
+          w: image.naturalWidth,
+          h: image.naturalHeight,
+          title: img.alt || '',
+          msrc: img.src, // Use the thumbnail src
+          el: element // Store the element reference
+        };
+
+        items.push(item);
+      };
+    });
+
+    return items;
   }
 }

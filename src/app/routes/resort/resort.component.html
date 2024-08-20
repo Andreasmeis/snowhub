@@ -1,0 +1,43 @@
+<div class="container" *ngIf="resort">
+    <div class="header">
+        <p class="location">{{ resort.location }}, Greece</p>
+        <h1 class="title">{{ resort.name.el }}</h1>
+    </div>
+
+    <div class="image-container">
+        <swiper [config]="configImages" id="gallery--responsive-images">
+            <ng-template swiperSlide *ngFor="let image of resort.images">
+                <a [href]="image.image_url">
+                    <img class="imageSlider" [src]="image.image_url" alt="" />
+                </a>
+            </ng-template>
+        </swiper>
+    </div>
+
+    <div class="description">
+        <h3 class="title">Πληροφορίες</h3>
+        <p class="content">{{ resort.description }}</p>
+        <h3 class="title">Δραστηριότητες</h3>
+        <div class="activities">
+            <div class="activity" *ngFor="let activity of resort.activities.en">
+                <i class="{{ActivitiesIcons[Activities[activity.activity]]}}"></i>
+                <p class="activity-name">{{activity.activity}}</p>
+            </div>
+        </div>
+    </div>
+    <div class="booking">
+
+    </div>
+
+    <div class="slopes">
+        <h3 class="title">Πίστες</h3>
+        <div class="slopes-container">
+            <div class="slope" *ngFor="let slope of resort.slopes">
+                <div class="slope-info">
+                    <span class="slope-difficulty {{slope.difficulty}}"></span>
+                    <p class="slope-name">{{slope.name}}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

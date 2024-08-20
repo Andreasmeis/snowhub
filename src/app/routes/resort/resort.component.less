@@ -1,0 +1,131 @@
+.container {
+    padding: 0 10rem;
+
+    .header {
+        margin: 3rem 0;
+
+        .location {
+            margin-bottom: 1rem;
+            color: #777777;
+        }
+
+        .title {
+            font-size: 1.5rem;
+            font-weight: 400;
+            margin-bottom: 1rem;
+        }
+    }
+
+    .image-container {
+        height: 30vh;
+
+        .swiper {
+            width: 100%;
+            height: 100%;
+            
+            .swiper-slide {
+                height: auto;
+            }
+        }
+    
+        .imageSlider {
+            width           : 100%;
+            height          : 100%;
+            margin-bottom   : 1rem;
+            border-radius: .5rem;
+            overflow        : hidden;
+            object-fit      : cover;
+        }
+    }
+
+    .description {
+        width: 60%;
+        margin: 3rem 0;
+        padding: 1.5rem 2rem;
+        background-color: #e9e9e9;
+        border-radius: 1rem;
+
+        .title {
+            font-size: 1.5rem;
+            font-weight: 400;
+            padding: 1rem 0;
+            margin-bottom: 1rem;
+        }
+
+        .content {
+            font-weight: 300;
+            // color: #777777;
+        }
+
+        .activities {
+            .activity {
+                display: flex;
+    
+                i {
+                    font-size: 1.5rem;
+                    margin-right: 1rem;
+                }
+                
+                .activity-name {
+                    font-size: 1.5rem;
+                    font-weight: 300;
+                    margin-bottom: 1rem;
+                }
+            }
+        }
+    }
+
+    .slopes {
+        width: 60%;
+        margin: 3rem 0;
+        padding: 1.5rem 2rem;
+        background-color: #e9e9e9;
+        border-radius: 1rem;
+
+        .title {
+            font-size: 1.5rem;
+            font-weight: 400;
+            padding: 1rem 0;
+            margin-bottom: 1rem;
+        }
+
+        .slope {
+            margin-bottom: 1rem;
+
+            .slope-info {
+                display: flex;
+                align-items: center;
+    
+                .slope-difficulty {
+                    width: .5rem;
+                    height: .5rem;
+                    border-radius: 100%;
+    
+                    &.green {
+                        background-color: #00ff00;
+                    }
+    
+                    &.blue {
+                        background-color: #0000ff;
+                    }
+    
+                    &.red {
+                        background-color: #ff0000;
+                    }
+    
+                    &.black {
+                        background-color: #000000;
+                    }
+                }
+    
+                .slope-name {
+                    font-size: 1.5rem;
+                    font-weight: 300;
+                    margin-left: 1rem;
+                }
+            }
+        }
+
+        
+    }
+}
