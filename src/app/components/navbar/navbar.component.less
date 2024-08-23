@@ -80,6 +80,7 @@ header {
             .dropdown-content {
                 display: none;
                 position: absolute;
+                right: 0;
                 background-color: #f9f9f9;
                 min-width: 160px;
                 box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
@@ -232,7 +233,7 @@ header {
 
             &.open {
                 display : block;
-                height  : 100%;
+                height  : 100vh;
                 width   : 50%;
                 position: fixed;
                 z-index : 10;
@@ -242,7 +243,7 @@ header {
         }
 
         nav {
-            height          : 100%;
+            height          : 100vh;
             width           : 0;
             position        : fixed;
             top             : 0;
@@ -279,8 +280,12 @@ header {
             }
 
             .login {
-                padding    : 10% 1rem;
+                padding    : 20% 1rem;
                 align-items: flex-end;
+            }
+
+            .dropdown {
+                text-align: end;
             }
         }
 

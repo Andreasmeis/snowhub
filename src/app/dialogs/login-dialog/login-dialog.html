@@ -1,29 +1,32 @@
 <div class="dialog-container">
-    <h1 class="login-title" [ngClass]="{'active': !isRegister}" (click)="isRegister = false">Login</h1>
-    <h1 class="login-title" [ngClass]="{'active': isRegister}" (click)="isRegister = true">Register</h1>
+    <h1 class="login-title" [ngClass]="{'active': !isRegister}" (click)="isRegister = false">Σύνδεση</h1>
+    <h1 class="login-title" [ngClass]="{'active': isRegister}" (click)="isRegister = true">Εγγραφή</h1>
 
     <hr>
 
     <form class="login-form" [formGroup]="loginForm">
         <div class="form-group" [ngClass]="{'hidden': !isRegister}">
-            <label for="email">Name</label>
+            <label for="email">Ονοματεπώνυμο</label>
             <input type="text" class="form-control" formControlName="name">
         </div>
 
         <div class="form-group">
             <label for="email">Email</label>
             <input type="email" class="form-control" formControlName="email">
+            <span class="error-msg" *ngIf="loginForm.get('email')?.invalid && loginForm.get('email')?.touched">Λάθος email</span>
         </div>
         
         <div class="form-group">
-            <label for="email">Password</label>
-            <input type="password" class="form-control" formControlName="password">
+            <label for="email">Κωδικός</label>
+            <input type="password" class="form-control" formControlName="password" (keydown.enter)="isRegister ? register() : login()">
+            <span class="error-msg" *ngIf="loginForm.get('password')?.invalid && loginForm.get('password')?.touched">Λάθος Κωδικός</span>
+            <span class="error-msg" *ngIf="wrongCredentials && !loginForm.get('password')?.invalid">Λάθος Στοιχεία</span>
         </div>
         
     </form>
     
     <div class="form-button">
-        <button *ngIf="!isRegister" (click)="login()">Login</button>
-        <button *ngIf="isRegister" (click)="register()">Register</button>
+        <button *ngIf="!isRegister" (click)="login()">Σύνδεση</button>
+        <button *ngIf="isRegister" (click)="register()">Εγγραφή</button>
     </div>
 </div>

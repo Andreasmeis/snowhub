@@ -1,17 +1,8 @@
-export enum Activities {
-    'ski',
-    'snowboard',
-    'snow sled',
-    'snowmobile',
-    'snow bar',
-    'Climbing',
-}
-
-export enum ActivitiesIcons {
-    'fas fa-skiing',
-    'fas fa-snowboarding',
-    'fas fa-sleigh',
-    'fas fa-snowmobile',
-    'fas fa-igloo',
-    'fas fa-mountain',
-}
+export const ActivitiesIcons: { [key: string]: string } = {
+    'ski': 'fas fa-skiing',
+    'snowboard': 'fas fa-snowboarding',
+    'snow sled': 'fas fa-sleigh',
+    'snowmobile': 'fas fa-snowmobile',
+    'snow bar': 'fas fa-igloo',
+    'Climbing': 'fas fa-mountain'
+};

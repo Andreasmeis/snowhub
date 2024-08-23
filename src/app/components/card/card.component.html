@@ -9,6 +9,6 @@
             <h2 class="card-title">{{data.name.el}}</h2>
             <div class="badge {{data.status == 'Open' ? 'active' : 'inactive'}}"></div>
         </div>
-        <i class="fa-solid {{isLiked ? 'liked' : ''}} fa-heart" (click)="isLiked = !isLiked"></i>
+        <i class="fa-solid {{isFavourite() ? 'liked' : ''}} fa-heart" (click)="changeLike()"></i>
     </div>
 </div>

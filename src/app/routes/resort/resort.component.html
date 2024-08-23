@@ -1,6 +1,6 @@
 <div class="container" *ngIf="resort">
     <div class="header">
-        <p class="location">{{ resort.location }}, Greece</p>
+        <p class="location">{{ resort.location }}, Ελλάδα</p>
         <h1 class="title">{{ resort.name.el }}</h1>
     </div>
 
@@ -14,28 +14,63 @@
         </swiper>
     </div>
 
-    <div class="description">
-        <h3 class="title">Πληροφορίες</h3>
-        <p class="content">{{ resort.description }}</p>
-        <h3 class="title">Δραστηριότητες</h3>
-        <div class="activities">
-            <div class="activity" *ngFor="let activity of resort.activities.en">
-                <i class="{{ActivitiesIcons[Activities[activity.activity]]}}"></i>
-                <p class="activity-name">{{activity.activity}}</p>
+    <div class="button-container">
+        <button class="button">Χάρτης Πιστών</button>
+        <button class="button">WebCams</button>
+    </div>
+
+    <div class="content-wrapper">
+        <div class="description">
+            <h3 class="title">Πληροφορίες</h3>
+            <p class="content">{{ resort.description }}</p>
+            <h3 class="title">Δραστηριότητες</h3>
+            <div class="activities">
+                <div class="activity" *ngFor="let activity of resort.activities.en">
+                    <i class="{{ActivitiesIcons[activity.activity]}}"></i>
+                    <p class="activity-name">{{activity.activity}}</p>
+                </div>
             </div>
         </div>
-    </div>
-    <div class="booking">
 
-    </div>
+        <div class="booking">
+            <h3 class="title">Κράτηση</h3>
+            <div class="booking-container">
+                <div class="booking-info">
+                    <p class="booking-title">Ημερήσιο Pass</p>
+                    <p class="booking-price">{{ cost }}€</p>
+                </div>
+                <div class="booking-info">
+                    <p class="booking-title">Επισκέπτες</p>
+                    <div class="booking-visitors">
+                        <i class="fas fa-minus" (click)="changeVisitors('remove')"></i>
+                        <p class="booking-price">{{ visitors }}</p>
+                        <i class="fas fa-plus" (click)="changeVisitors('add')"></i>
+                    </div>
+                </div>
+                <button class="booking-button">Κράτηση</button>
+            </div>
+        </div>
 
-    <div class="slopes">
-        <h3 class="title">Πίστες</h3>
-        <div class="slopes-container">
-            <div class="slope" *ngFor="let slope of resort.slopes">
-                <div class="slope-info">
-                    <span class="slope-difficulty {{slope.difficulty}}"></span>
-                    <p class="slope-name">{{slope.name}}</p>
+        <div class="slopes">
+            <h3 class="title">Πίστες</h3>
+            <div class="slopes-container">
+                <div class="slope" *ngFor="let slope of resort.slopes">
+                    <div class="slope-info">
+                        <span class="slope-difficulty {{slope.difficulty}}"></span>
+                        <p class="slope-name">{{slope.name}}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="lifts">
+            <h3 class="title">Αναβατήρες</h3>
+            <div class="lifts-container">
+                <div class="lift" *ngFor="let lift of lifts">
+                    <div class="lift-info">
+                        <span class="lift-availability {{lift.is_open ? 'green' : 'red'}}"></span>
+                        <p class="lift-name">{{lift.name}}</p>
+                    </div>
                 </div>
             </div>
         </div>

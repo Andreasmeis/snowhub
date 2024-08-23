@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { RequestService } from 'src/app/services/request.service';
+import { RequestService } from 'src/app/services/requestService/request.service';
+import { ResortService } from 'src/app/services/resortService/resort.service';
 import { resorts } from 'src/assets/resorts';
 import Swiper, { Autoplay, Navigation, Pagination, SwiperOptions } from 'swiper';
 
@@ -10,6 +11,8 @@ Swiper.use([Navigation, Pagination, Autoplay]);
   styleUrls: ['./home.component.less']
 })
 export class HomeComponent {
+  data: any = [];
+
   configImages: SwiperOptions = {
     slidesPerView: 1,
     spaceBetween: 50,
@@ -40,13 +43,11 @@ export class HomeComponent {
       },
     },
   };
-  data: any = [];
+  
 
-  constructor(private request: RequestService) { }
+  constructor(private resortService: ResortService) { }
 
   ngOnInit() {
-    this.request.getRequest({ url: 'SnowResorts' }).then((data: any) => {
-      this.data = data.slice(0, 5);
-    })
+    this.data = this.resortService.allResorts.slice(0, 5)
   }
 }

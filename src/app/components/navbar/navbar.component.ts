@@ -2,7 +2,9 @@ import { Component, Input } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { LoginDialog } from 'src/app/dialogs/login-dialog/login-dialog';
-import { RequestService } from 'src/app/services/request.service';
+import { FavouriteService } from 'src/app/services/favouriteService/favourite.service';
+import { RequestService } from 'src/app/services/requestService/request.service';
+import { UserService } from 'src/app/services/userService/user.service';
 
 
 @Component({
@@ -19,16 +21,14 @@ export class NavbarComponent {
     }
   );
 
-  constructor(public dialog: MatDialog, private requestService: RequestService) { }
+  constructor(public dialog: MatDialog, private requestService: RequestService, private userService: UserService, private favouritesService: FavouriteService) { }
 
   ngOnInit() {
     if (this.requestService.token) {
-      this.requestService.getRequest({ url: 'user' }, true).then((data: any) => {
-        this.user = {
-          name: data.name,
-          email: data.email
-        };
-      })
+      this.userService.getUser().then((user: any) => {
+        this.user = user
+        this.favouritesService.setFavourites()
+    })
     }
   }
 
@@ -39,19 +39,14 @@ export class NavbarComponent {
 
     dialogRef.afterClosed().subscribe(result => {
       if (result) {
-        this.requestService.getRequest({ url: 'user' }, true).then((data: any) => {
-          this.user = {
-            name: data.name,
-            email: data.email
-          };
-        })
+        location.reload();
       }
     });
   }
 
   logout() {
     this.requestService.postRequest({ url: 'logout' }, true).then(() => {
-      this.user = null;
+      location.reload();
     })
   }
 
