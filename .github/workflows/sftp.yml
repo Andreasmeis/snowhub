@@ -27,7 +27,6 @@ jobs:
           server: ${{ secrets.FTP_SERVER }}
           port: ${{ secrets.FTP_PORT }}
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
-          passphrase: ${{ secrets.SSHKEYPASSWORD }}
           local_path: './dist/snowhub/'
           remote_path: '/var/www/html/test'
           sftp_only: true
