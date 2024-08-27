@@ -28,14 +28,6 @@ jobs:
           port: ${{ secrets.FTP_PORT }}
           ssh_private_key: ${{ secrets.SSH_PRIVATE_KEY }}
           local_path: './dist/snowhub/'
-          remote_path: '/var/www/html/test'
+          remote_path: '/var/www/html'
           sftp_only: true
-      # - name: 📂 Sync files via FTP
-      #   uses: SamKirkland/FTP-Deploy-Action@v4.3.4
-      #   with:
-      #     server: ftp.meis.gr 
-      #     username: ${{ secrets.USERNAME }}
-      #     password: ${{ secrets.PASSWORD }}
-      #     server-dir: '/public_html/snowhub/'
-      #     local-dir: './dist/snowhub/'
             

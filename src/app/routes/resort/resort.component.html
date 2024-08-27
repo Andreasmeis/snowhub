@@ -6,7 +6,7 @@
 
     <div class="image-container">
         <swiper [config]="configImages" id="gallery--responsive-images">
-            <ng-template swiperSlide *ngFor="let image of resort.images">
+            <ng-template swiperSlide *ngFor="let image of images">
                 <a [href]="image.image_url">
                     <img class="imageSlider" [src]="image.image_url" alt="" />
                 </a>
@@ -15,8 +15,7 @@
     </div>
 
     <div class="button-container">
-        <button class="button">Χάρτης Πιστών</button>
-        <button class="button">WebCams</button>
+        <a class="button" [href]="slopesMap" target="_blank">Χάρτης Πιστών</a>
     </div>
 
     <div class="content-wrapper">
@@ -47,7 +46,7 @@
                         <i class="fas fa-plus" (click)="changeVisitors('add')"></i>
                     </div>
                 </div>
-                <button class="booking-button">Κράτηση</button>
+                <button class="booking-button" (click)="sendBooking()">Κράτηση</button>
             </div>
         </div>
 
@@ -67,7 +66,7 @@
             <h3 class="title">Αναβατήρες</h3>
             <div class="lifts-container">
                 <div class="lift" *ngFor="let lift of lifts">
-                    <div class="lift-info">
+                    <div class="lift-info" [title]="lift.is_open ? 'Ανοιχτό' : 'Κλειστό'">
                         <span class="lift-availability {{lift.is_open ? 'green' : 'red'}}"></span>
                         <p class="lift-name">{{lift.name}}</p>
                     </div>

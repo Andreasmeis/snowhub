@@ -26,7 +26,6 @@ import { DialogsModule } from './dialogs/dialogs.module';
     DialogsModule
   ],
   providers: [],
-  bootstrap: [AppComponent],
-  // schemas: [CUSTOM_ELEMENTS_SCHEMA]
+  bootstrap: [AppComponent]
 })
 export class AppModule { }

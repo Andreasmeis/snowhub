@@ -20,6 +20,7 @@ export class ResortComponent {
   lifts: any;
   visitors: any = 1;
   ActivitiesIcons = ActivitiesIcons;
+  slopesMap?: String;
 
   configImages: SwiperOptions = {
     slidesPerView: 1,
@@ -47,6 +48,8 @@ export class ResortComponent {
     this.resort = this.resortService.getActiveResort(this.resortId)
     this.getCost();
     this.getLifts();
+    this.images = this.resort.images.filter((image: any) => image.caption === 'view');
+    this.slopesMap = this.resort.images.find((image: any) => image.caption === 'map').image_url;
   }
   
   ngAfterViewInit() {
@@ -121,14 +124,14 @@ export class ResortComponent {
   sendBooking() {
     let params = {
       url: 'booking',
-      data: {
-        resortId: this.resortId,
-        visitors: this.visitors,
+      req: {
+        snow_resort_id: this.resortId,
+        number_pass: this.visitors,
         cost: this.cost
       }
-    }
-    this.request.postRequest(params).then((res: any) => {
-      console.log(res)
-    })
+    };
+    
+    // Call the postRequest method
+    this.request.postRequest(params, true)
   }
 }

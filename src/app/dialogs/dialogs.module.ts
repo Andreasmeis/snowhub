@@ -4,8 +4,7 @@ import { LoginDialog } from './login-dialog/login-dialog';
 import { SharedModule } from '../shared.module';
 
 const dialogs = [
-    LoginDialog,
-    // TestDialog
+    LoginDialog
 ]
 
 @NgModule({
