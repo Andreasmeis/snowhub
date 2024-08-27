@@ -11,13 +11,17 @@ export class UserService {
   constructor(private requestService: RequestService) { }
 
   getUser() {
-    return this.requestService.getRequest({ url: 'user' }, true).then((resp: any) => {
-      this.user = {
-        id: resp.id,
-        name: resp.name,
-        email: resp.email
-      }
-      return this.user
-    })
+    return this.requestService.getRequest({ url: 'user' }, true)
+      .then((resp: any) => {
+        this.user = {
+          id: resp.id,
+          name: resp.name,
+          email: resp.email
+        };
+        return this.user;
+      })
+      .catch(() => {
+        return false;
+      });
   }
 }

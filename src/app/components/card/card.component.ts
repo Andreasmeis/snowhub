@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { FavouriteService } from 'src/app/services/favouriteService/favourite.service';
+import { UserService } from 'src/app/services/userService/user.service';
 
 @Component({
   selector: 'app-card',
@@ -10,8 +11,9 @@ export class CardComponent {
   @Input() data: any;
   isLiked = false;
   isHovered = false;
+  isLogged = this.userService.user;
 
-  constructor(private favouriteService: FavouriteService) {
+  constructor(private favouriteService: FavouriteService, private userService: UserService) {
   }
 
   ngOnInit() {
@@ -19,10 +21,14 @@ export class CardComponent {
   }
 
   changeLike() {
+    if (!this.isLogged) {
+      return;
+    }
+    
     if (this.isLiked) {
       this.favouriteService.removeFovourite(this.data.id)
       this.isLiked = false;
-    } else {
+    } else if (!this.isLiked) {
       this.favouriteService.addFovourite(this.data.id)
       this.isLiked = true;
     }

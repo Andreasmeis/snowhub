@@ -46,6 +46,7 @@ export class NavbarComponent {
 
   logout() {
     this.requestService.postRequest({ url: 'logout' }, true).then(() => {
+      localStorage.removeItem('token');
       location.reload();
     })
   }
