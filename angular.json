@@ -27,6 +27,7 @@
             "inlineStyleLanguage": "less",
             "assets": [
               "src/favicon.ico",
+              "src/light-mode-favicon.ico",
               "src/assets"
             ],
             "styles": [

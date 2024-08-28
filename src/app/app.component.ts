@@ -17,5 +17,6 @@ export class AppComponent {
   ngOnInit() {
     this.request.token = localStorage.getItem('token');
     this.resortService.getAllResorts().then(() => this.flag = true)
+    console.log(window.matchMedia('(prefers-color-scheme: light)'))
   }
 }
