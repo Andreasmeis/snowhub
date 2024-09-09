@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
-import { RequestService } from 'src/app/services/requestService/request.service';
-import { resorts } from 'src/assets/resorts';
+import { ResortService } from 'src/app/services/resortService/resort.service';
 
 @Component({
   selector: 'app-resorts',
@@ -8,13 +7,11 @@ import { resorts } from 'src/assets/resorts';
   styleUrls: ['./resorts.component.less']
 })
 export class ResortsComponent {
-  data: any;
+  allResorts: any;
 
-  constructor(private request: RequestService) { }
+  constructor(private resort: ResortService) { }
 
   ngOnInit() {
-    this.request.getRequest({ url: 'SnowResorts' }).then((data: any) => {
-      this.data = data;
-    })
+    this.allResorts = this.resort.allResorts;
 }
 }

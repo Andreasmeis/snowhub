@@ -1,7 +1,5 @@
 import { Component } from '@angular/core';
-import { RequestService } from 'src/app/services/requestService/request.service';
 import { ResortService } from 'src/app/services/resortService/resort.service';
-import { resorts } from 'src/assets/resorts';
 import Swiper, { Autoplay, Navigation, Pagination, SwiperOptions } from 'swiper';
 
 Swiper.use([Navigation, Pagination, Autoplay]);
