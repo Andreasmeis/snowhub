@@ -15,11 +15,9 @@ import { UserService } from 'src/app/services/userService/user.service';
 export class NavbarComponent {
   user: any;
   isOpen: boolean = false;
-  nav = new FormGroup(
-    {
-      value: new FormControl(false),
-    }
-  );
+  nav = new FormGroup({
+    value: new FormControl(false),
+  });
 
   constructor(public dialog: MatDialog, private requestService: RequestService, private userService: UserService, private favouritesService: FavouriteService) { }
 
@@ -28,7 +26,7 @@ export class NavbarComponent {
       this.userService.getUser().then((user: any) => {
         this.user = user
         this.favouritesService.setFavourites()
-    })
+      })
     }
   }
 

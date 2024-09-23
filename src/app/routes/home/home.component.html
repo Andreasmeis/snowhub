@@ -15,7 +15,7 @@
         <div class="resorts">
             <h2>Πιο Δημοφιλή</h2>
             <swiper [config]="config">
-                <ng-template swiperSlide *ngFor="let resort of data">
+                <ng-template swiperSlide *ngFor="let resort of resorts">
                     <app-card swiperSlide [data]="resort"></app-card>
                 </ng-template>
             </swiper>

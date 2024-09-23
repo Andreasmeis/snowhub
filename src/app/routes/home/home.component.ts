@@ -9,7 +9,7 @@ Swiper.use([Navigation, Pagination, Autoplay]);
   styleUrls: ['./home.component.less']
 })
 export class HomeComponent {
-  data: any = [];
+  resorts: any = [];
 
   configImages: SwiperOptions = {
     slidesPerView: 1,
@@ -41,11 +41,10 @@ export class HomeComponent {
       },
     },
   };
-  
 
   constructor(private resortService: ResortService) { }
 
   ngOnInit() {
-    this.data = this.resortService.allResorts.slice(0, 5)
+    this.resorts = this.resortService.allResorts.slice(0, 5)
   }
 }

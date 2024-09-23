@@ -13,5 +13,5 @@ export class ResortsComponent {
 
   ngOnInit() {
     this.allResorts = this.resort.allResorts;
-}
+  }
 }

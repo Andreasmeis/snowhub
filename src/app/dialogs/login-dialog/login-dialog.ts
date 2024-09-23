@@ -14,7 +14,7 @@ export class LoginDialog {
     isRegister: boolean = false;
     wrongCredentials: boolean = false;
 
-    constructor(public dialogRef: MatDialogRef<LoginDialog>, private fb: FormBuilder, private requestService: RequestService, private userService: UserService,
+    constructor(public dialogRef: MatDialogRef<LoginDialog>, private fb: FormBuilder, private userService: UserService,
         @Inject(MAT_DIALOG_DATA) public data: any) {
         this.loginForm = this.fb.group({
             name: new FormControl('', [this.isRegister ? Validators.required : Validators.nullValidator]),
@@ -24,40 +24,29 @@ export class LoginDialog {
     }
 
     login() {
-        let params = {
-            url: 'login',
-            req: {
-                email: this.loginForm.value.email,
-                password: this.loginForm.value.password
-            }
-
-        };
+        let email = this.loginForm.value.email;
+        let password = this.loginForm.value.password;
         if (this.loginForm.valid) {
-            this.requestService.postRequest(params).then((res: any) => {
-                this.requestService.token = res.token;
-                localStorage.setItem('token', res.token);
-                this.dialogRef.close(true);
-            }, (error: any) => {
-                console.error('An error occurred:', error);
-                this.wrongCredentials = true;
+            this.userService.login(email, password).then((res: any) => {
+                if (res) {
+                    this.dialogRef.close(true);
+                } else {
+                    this.wrongCredentials = true;
+                }
             });
         }
     }
 
     register() {
-        let params = {
-            url: 'register',
-            req: {
-                name: this.loginForm.value.name,
-                email: this.loginForm.value.email,
-                password: this.loginForm.value.password
-            }
-
-        };
+        let email = this.loginForm.value.email;
+        let password = this.loginForm.value.password;
+        let name = this.loginForm.value.name;
         if (this.loginForm.valid) {
-            this.requestService.postRequest(params).then(() => {
-                this.isRegister = false;
-            })
+            this.userService.register(name, email, password).then((res: any) => {
+                if (res) {
+                    this.dialogRef.close(true);
+                }
+            });
         }
     }
 }

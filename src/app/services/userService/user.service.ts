@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { RequestService } from '../requestService/request.service';
-import { FavouriteService } from '../favouriteService/favourite.service';
 
 @Injectable({
   providedIn: 'root'
@@ -23,5 +22,47 @@ export class UserService {
       .catch(() => {
         return false;
       });
+  }
+
+  login(email: string, password: string) {
+    let params = {
+      url: 'login',
+      req: {
+        email: email,
+        password: password
+      }
+    };
+    return this.requestService.postRequest(params).then((res: any) => {
+      this.requestService.token = res.token;
+      localStorage.setItem('token', res.token);
+      return true;
+    }, (error: any) => {
+      console.error('An error occurred:', error);
+      return false;
+    });
+  }
+
+  register(name: string, email: string, password: string) {
+    let params = {
+      url: 'register',
+      req: {
+        name: name,
+        email: email,
+        password: password
+      }
+    };
+    return this.requestService.postRequest(params).then(() => {
+      return true;
+    }, (error: any) => {
+      console.error('An error occurred:', error);
+      return false;
+    });
+  }
+
+  logout() {
+    this.requestService.postRequest({ url: 'logout' }, true).then(() => {
+      localStorage.removeItem('token');
+      location.reload();
+    })
   }
 }

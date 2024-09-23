@@ -7,14 +7,14 @@ import { UserService } from '../userService/user.service';
 export class FavouriteService {
   favourites: number[] = [];
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService) { }
 
-  addFovourite(resortId: number) {
+  addFavourite(resortId: number) {
     this.favourites.push(resortId);
     localStorage.setItem(this.userService.user.id, JSON.stringify(this.favourites))
   }
 
-  removeFovourite(resortId: number) {
+  removeFavourite(resortId: number) {
     this.favourites = this.favourites.filter(id => id !== resortId);
     localStorage.setItem(this.userService.user.id, JSON.stringify(this.favourites))
   }

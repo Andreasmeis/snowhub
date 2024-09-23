@@ -15,7 +15,7 @@ export class RequestService {
     const headers = auth ? new HttpHeaders({ 'Authorization': 'Bearer ' + this.token }) : new HttpHeaders();
 
     return new Promise((resolve, reject) => {
-      this.http.get<any>('/api/' + params.url, { headers }).
+      this.http.get<any>(environment.apiUrl + params.url, { headers }).
         subscribe((data: any) => {
           resolve(data);
         }, error => {
@@ -29,7 +29,7 @@ export class RequestService {
     const headers = auth ? new HttpHeaders({ 'Authorization': 'Bearer ' + this.token }) : new HttpHeaders();
 
     return new Promise((resolve, reject) => {
-      this.http.post<any>('/api/' + params.url, params.req, { headers })
+      this.http.post<any>(environment.apiUrl + params.url, params.req, { headers })
         .subscribe(data => {
           resolve(data);
         }, error => {

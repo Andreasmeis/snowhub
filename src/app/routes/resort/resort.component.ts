@@ -1,10 +1,9 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { RequestService } from 'src/app/services/requestService/request.service';
 import PhotoSwipeLightbox from 'photoswipe/lightbox';
 import PhotoSwipe from 'photoswipe';
 import { SwiperOptions } from 'swiper';
 import { ActivatedRoute } from '@angular/router';
-import {  ActivitiesIcons } from 'src/app/interfaces/resorts';
+import { ActivitiesIcons } from 'src/app/interfaces/resorts';
 import { ResortService } from 'src/app/services/resortService/resort.service';
 @Component({
   selector: 'app-resort',
@@ -42,16 +41,16 @@ export class ResortComponent {
     },
   };
 
-  constructor(private request: RequestService, private route: ActivatedRoute, private resortService: ResortService) { }
+  constructor(private route: ActivatedRoute, private resortService: ResortService) { }
 
   ngOnInit() {
     this.resort = this.resortService.getActiveResort(this.resortId)
-    this.getCost();
-    this.getLifts();
+    this.cost = this.resortService.getCost(this.resortId);
+    this.lifts = this.resortService.getLifts(this.resortId);
     this.images = this.resort.images.filter((image: any) => image.caption === 'view');
     this.slopesMap = this.resort.images.find((image: any) => image.caption === 'map').image_url;
   }
-  
+
   ngAfterViewInit() {
     // Get the images data before initializing PhotoSwipe
     const items = this.getImagesData();
@@ -95,24 +94,6 @@ export class ResortComponent {
     return items;
   }
 
-  getCost() {
-    let params = {
-      url: 'cost/' + this.resortId,
-    }
-    this.request.getRequest(params).then((res: any) => {
-      this.cost = res[0].cost;
-    })
-  }
-
-  getLifts() {
-    let params = {
-      url: 'lifts/' + this.resortId,
-    }
-    this.request.getRequest(params).then((res: any) => {
-      this.lifts = res;
-    })
-  }
-
   changeVisitors(type: string) {
     if (type === 'add' && this.visitors < 8) {
       this.visitors += 1;
@@ -122,16 +103,6 @@ export class ResortComponent {
   }
 
   sendBooking() {
-    let params = {
-      url: 'booking',
-      req: {
-        snow_resort_id: this.resortId,
-        number_pass: this.visitors,
-        cost: this.cost
-      }
-    };
-    
-    // Call the postRequest method
-    this.request.postRequest(params, true)
+    this.resortService.sendBooking(this.resortId, this.visitors, this.cost);
   }
 }

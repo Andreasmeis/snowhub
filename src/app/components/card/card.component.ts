@@ -26,10 +26,10 @@ export class CardComponent {
     }
     
     if (this.isLiked) {
-      this.favouriteService.removeFovourite(this.data.id)
+      this.favouriteService.removeFavourite(this.data.id)
       this.isLiked = false;
     } else if (!this.isLiked) {
-      this.favouriteService.addFovourite(this.data.id)
+      this.favouriteService.addFavourite(this.data.id)
       this.isLiked = true;
     }
   }
