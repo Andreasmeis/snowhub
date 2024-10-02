@@ -35,6 +35,7 @@ export class UserService {
     return this.requestService.postRequest(params).then((res: any) => {
       this.requestService.token = res.token;
       localStorage.setItem('token', res.token);
+      location.reload();
       return true;
     }, (error: any) => {
       console.error('An error occurred:', error);

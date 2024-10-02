@@ -13,7 +13,7 @@ import { UserService } from 'src/app/services/userService/user.service';
   styleUrls: ['./navbar.component.less']
 })
 export class NavbarComponent {
-  user: any;
+  @Input() user: any;
   isOpen: boolean = false;
   nav = new FormGroup({
     value: new FormControl(false),
@@ -22,12 +22,7 @@ export class NavbarComponent {
   constructor(public dialog: MatDialog, private requestService: RequestService, private userService: UserService, private favouritesService: FavouriteService) { }
 
   ngOnInit() {
-    if (this.requestService.token) {
-      this.userService.getUser().then((user: any) => {
-        this.user = user
-        this.favouritesService.setFavourites()
-      })
-    }
+    this.user = this.userService.user;
   }
 
   openLoginDialog() {
